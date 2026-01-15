@@ -1,0 +1,27 @@
+// Problem Link: https://leetcode.com/problems/palindrome-number/
+// Problem: Palindrome Number
+// Platform: LeetCode
+// Difficulty: Easy
+// Approach: Reverse the number and compare
+// Time Complexity: O(log10(n))
+// Space Complexity: O(1)
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+
+        int rev = 0, num = x;
+        while (x != 0) {
+            if (rev > INT_MAX / 10 || rev < INT_MIN / 10) {
+                return false;
+            }
+            rev = rev * 10 + x % 10;
+            x /= 10;
+        }
+
+        return num == rev || num == rev / 10;
+    }
+};
